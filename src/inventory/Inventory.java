@@ -6,6 +6,11 @@ import java.util.ArrayList;
 public class Inventory<T extends Product> {
     private ArrayList<T> items = new ArrayList<>();
 
+    // Setter && Getter
+    public ArrayList<T> getItems() {
+        return items;
+    }
+
     public void addItem(T product) {
         items.add(product);
     }
