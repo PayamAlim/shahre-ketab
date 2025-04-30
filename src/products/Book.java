@@ -16,7 +16,7 @@ public class Book extends Product {
     @Override
     protected String generateId() {
         counter ++;
-        return "1" + counter;
+        return "1" +  String.format("%03d", counter);
     }
 
     @Override

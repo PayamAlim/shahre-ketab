@@ -3,12 +3,10 @@ import inventory.Inventory;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. ساخت انبارهای مختلف
         Inventory<Book> bookInventory = new Inventory<>();
-        Inventory<NoteBook> notebookInventory = new Inventory<>();
+        Inventory<NoteBook> noteBookInventory = new Inventory<>();
         Inventory<Accessory> accessoryInventory = new Inventory<>();
 
-        // 2. ایجاد محصولات نمونه
         Book book1 = new Book("Java Programming", 50.0, "John Doe", "TechPub", "Educational");
         Book book2 = new Book("Design Patterns", 45.0, "Gamma", "Addison", "Computer Science");
 
@@ -21,8 +19,8 @@ public class Main {
         bookInventory.addItem(book1);
         bookInventory.addItem(book2);
 
-        notebookInventory.addItem(notebook1);
-        notebookInventory.addItem(notebook2);
+        noteBookInventory.addItem(notebook1);
+        noteBookInventory.addItem(notebook2);
 
         accessoryInventory.addItem(accessory1);
         accessoryInventory.addItem(accessory2);
@@ -31,7 +29,7 @@ public class Main {
         bookInventory.displayAll();
 
         System.out.println("\n----- All Notebooks -----");
-        notebookInventory.displayAll();
+        noteBookInventory.displayAll();
 
         System.out.println("\n----- All Accessories -----");
         accessoryInventory.displayAll();
@@ -43,18 +41,26 @@ public class Main {
         bookInventory.displayAll();
 
         System.out.println("\nSearching for notebook with ID " + notebook2.getId() + ":");
-        NoteBook foundNotebook = notebookInventory.findItemById(notebook2.getId());
+        NoteBook foundNotNoteBook = noteBookInventory.findItemById("3111");
+        NoteBook foundNotebook = noteBookInventory.findItemById(notebook2.getId());
         if(foundNotebook != null) {
             System.out.println("Found: " + foundNotebook);
         }
 
-        accessoryInventory.applyDiscount("Color Pencils", 20); // 20% discount
+        try {
+            System.out.println("\nAfter applying 20% discount to not existed product:");
+            accessoryInventory.applyDiscount("Random", 20);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+
+        accessoryInventory.applyDiscount("Color Pencils", 20);
         System.out.println("\nAfter applying 20% discount to 'Color Pencils':");
         accessoryInventory.displayAll();
 
         System.out.println("\n----- Total Prices -----");
         System.out.println("Total books price: " + calculateTotalPrice(bookInventory));
-        System.out.println("Total notebooks price: " + calculateTotalPrice(notebookInventory));
+        System.out.println("Total notebooks price: " + calculateTotalPrice(noteBookInventory));
         System.out.println("Total accessories price: " + calculateTotalPrice(accessoryInventory));
     }
 
