@@ -20,7 +20,7 @@ public class NoteBook extends Product {
     @Override
     protected String generateId() {
         counter ++;
-        return "2" + counter;
+        return "2" + String.format("%03d", counter);
     }
 
     @Override
