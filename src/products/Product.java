@@ -10,6 +10,10 @@ public abstract class Product {
     public Double getPrice() { return price; }
     public String getId() { return id; }
 
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     // Constructor
     public Product(String title, Double price) {
         this.title = title;
